@@ -1,2 +1,5 @@
 .ve
 .idea
+.Python
+*.pyc
+*.DS_Store

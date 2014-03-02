@@ -1,170 +1,507 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- 页面头部【start】 -->
 <head>
-    <meta charset="utf-8">
-    <title>{% block title %}{% endblock %}</title>
-    <!-- VB6o_HP8P_k-g85BWZspECYwUTY -->
-    <meta name="description" content="坤裕纺织">
-    <meta name="author" content="xxshutong@gmail.com">
-    <meta content="www.wj-zpw.com,版权所有,请勿转载" name="Copyright">
-    <meta content="坤裕 纺织 textile 吴江 盛泽" name="keywords">
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!-- Le styles -->
-    <script src="/static/js/jquery-1.7.min.js" type="text/javascript"></script>
-    <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="/static/images/favicon.ico">
-    {% block head %}{% endblock %}
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="keywords" content="涤塔夫、春亚纺、桃皮绒、麂皮绒、色丁"/>
+<meta name="description" content="涤塔夫、春亚纺、桃皮绒、麂皮绒、色丁、雪纺类、记忆面料、尼丝纺、塔丝隆、牛津布、家纺类"/>
+<script type="text/javascript" src="/static/kunyutex/script/tree.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/kunyutex/css/style.css"/>
+<script type="text/javascript" language="javascript" src="/static/kunyutex/script/jquery.min.js"></script>
+<script type="text/javascript" language="javascript"
+        src="/static/kunyutex/script/popup/jquery.ui.custom.min.js"></script>
+<script type="text/javascript" language="javascript" src="/static/kunyutex/script/droppy.js"></script>
+<script type="text/javascript" language="javascript" src="/static/kunyutex/script/thickbox.js"></script>
+<script type="text/javascript" language="javascript" src="/static/kunyutex/script/helper.js?v=1"></script>
+<script type="text/javascript" language="javascript" src="/static/kunyutex/script/png.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/kunyutex/script/thickbox.css"/>
+<link rel="stylesheet" type="text/css" href="/static/kunyutex/script/popup/theme/jquery.ui.core.css"/>
+<link rel="stylesheet" type="text/css" href="/static/kunyutex/script/popup/theme/jquery.ui.dialog.css"/>
+<link rel="stylesheet" type="text/css" href="/static/kunyutex/script/popup/theme/jquery.ui.theme.css"/>
+<link rel="stylesheet" type="text/css" href="/static/kunyutex/script/popup/theme/jquery.ui.resizable.css"/>
+<title>{% block title %}{% endblock %}</title>
+{% block head %}{% endblock %}
 </head>
 
-<body>
-    <!-- 头部信息开始 -->
-    <div class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container">
-                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </a>
-                <a class="brand" href="/">吴江-招聘网</a>
-                <div class="nav-collapse">
-                    <ul class="nav">
-                        <li {%if menu == 'dashboard'%}class="active"{%endif%}><a href="/">首页</a></li>
-                        <li {%if menu == 'search_job'%}class="active"{%endif%}><a href="{% url search_job %}">找工作</a></li>
-                        <li {%if menu == 'search_person'%}class="active"{%endif%}><a href="{% url search_person %}">找人才</a></li>
-                        <!--<li><a href="#">高级人才</a></li>-->
-                        <li><a href="#" style="display:none">兼职人才</a></li>
-                        <li {%if menu == 'feedback'%}class="active"{%endif%}><a href="{% url feedback %}">留言反馈</a></li>
-                        <li class="dropdown">
-                          <a href="#" role="button" id="other_service" data-toggle="dropdown" style="color:orange">相关服务 <b class="caret" style="color: lightgray;"></b></a>
-	                      <ul class="dropdown-menu" role="menu" aria-labelledby="other_service">
-{#	                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/system/foot_item/4/">企业建站</a></li>#}
-{#	                        <li role="presentation" class="divider"></li>#}
-{#	                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">待定</a></li>#}
-	                      </ul>
-	                    </li>
-                    </ul>
-                </div>
-
-                <div style="float:right">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <div class="nav-collapse">
-                        <ul class="nav">
-                            {% if user.is_active and not user.is_staff and not user.is_superuser %}
-                                <li><span style="float:left; padding-top:10px;">欢迎</span><a href="#" style="float:left">{{ user.username }}</a></li>
-                                <li style="padding-top:10px">|</li>
-                                {% if user.get_profile.type == 1 %}
-                                    <li><a href="{% url company_dashboard %}">控制面板</a></li>
-                                {% else %}
-                                    <li><a href="{% url personal_dashboard %}">控制面板</a></li>
-                                {% endif %}
-                                <li style="padding-top:10px">|</li>
-                                {% if user.get_profile.type == 1 %}
-                                    <li {%if menu == 'add_job'%}class="active"{%endif%}><a href="{% url add_job %}">发布职位</a></li>
-                            <li style="padding-top:10px">|</li>
-                                {% endif %}
-                                <li><a href="{% url logout %}">退出</a></li>
-                            {% endif %}
-                            {% if user.is_anonymous %}
-                                <li><a href="/personal/register/">注册</a></li>
-                                <li style="padding-top:10px">|</li>
-                                <li><a href="{%url login%}">登陆</a></li>
-                            {% endif %}
-                        </ul>
+<body class="body1" style="">
+    <div id="main_div1">
+        <div id="main_div">
+            <div id="top">
+                <div id="header">
+		            <div id="logo">
+                        <div id="MODBLK_227" class="mod_block media_image mb_logo_block">
+                            <div class="flash_image">
+                                <img src="/static/kunyutex/images/logo.png" alt="苏州坤裕纺织品有限公司"/>
+                            </div>
+                        </div>
                     </div>
-
-
-
-                </div>
+                    <div class="switch_langbar">
+                        <a href="javascript:;" onclick="set_default_lang(2,'other',1)">简体中文</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:;"
+                                                                                                   onclick="set_default_lang(3,'other',1)">English</a>
+                    </div>
+           	    </div>
             </div>
-        </div>
-    </div>
-    <!-- 头部信息结束 -->
+            <div id="nav1">
+                <div id="nav">
+	                <div id="MODBLK_169" class="mod_block mb_kOzgrVaw_block">
+			            <div class="nav_l"></div>
+        	                <ul id="nav_9ErWwx" class="navigation">
+			                    <li>
+                                    <a href="index.php?_m=frontpage&_a=index" target='_self'>首页</a>
+                                </li>
+                                <li>
+                                    <a href="index.php?_m=mod_static&_a=view&sc_id=2" target='_self'>公司简介</a>
+                                </li>
+                                <li>
+                                    <span><a href="index.php?_m=mod_product&_a=prdlist" target='_self'>产品展示</a>
+                                        <ul>
+                                            <li>
+                                                <a href="index.php?_m=mod_product&_a=prdlist&cap_id=116" target='_self'>涤塔夫</a>
+                                            </li>
+        <li>
+        <a href="index.php?_m=mod_product&_a=prdlist&cap_id=117" target='_self'>
+    春亚纺</a>
+        </li>
+        <li>
+        <a href="index.php?_m=mod_product&_a=prdlist&cap_id=118" target='_self'>
+    桃皮绒</a>
+        </li>
+        <li>
+        <a href="index.php?_m=mod_product&_a=prdlist&cap_id=119" target='_self'>
+    麂皮绒</a>
+        </li>
+        <li>
+        <a href="index.php?_m=mod_product&_a=prdlist&cap_id=120" target='_self'>
+    色丁</a>
+        </li>
+        <li>
+        <a href="index.php?_m=mod_product&_a=prdlist&cap_id=121" target='_self'>
+    雪纺类</a>
+        </li>
+        <li>
+        <a href="index.php?_m=mod_product&_a=prdlist&cap_id=122" target='_self'>
+    记忆面料</a>
+        </li>
+        <li>
+        <a href="index.php?_m=mod_product&_a=prdlist&cap_id=123" target='_self'>
+    尼丝纺</a>
+        </li>
+        <li>
+        <a href="index.php?_m=mod_product&_a=prdlist&cap_id=124" target='_self'>
+    塔丝隆</a>
+        </li>
+        <li>
+        <a href="index.php?_m=mod_product&_a=prdlist&cap_id=125" target='_self'>
+    牛津布</a>
+        </li>
+        <li>
+        <a href="index.php?_m=mod_product&_a=prdlist&cap_id=126" target='_self'>
+    家纺类</a>
+        </li>
+        </ul></span>
+        </li>
+        <li>
+        <a href="index.php?_m=mod_static&_a=view&sc_id=9" target='_self'>
+    设备展示</a>
+        </li>
+        <li>
+        <a href="index.php?_m=mod_message&_a=form" target='_self'>
+    用户留言</a>
+        </li>
+        <li>
+        <a href="index.php?_m=mod_static&_a=view&sc_id=1" target='_self'>
+    联系我们</a>
+        </li>
+                </ul>
+			<div class="nav_r"></div>
 
-    <!-- 主体顶部信息开始 -->
-    <div class="container">
-        <div class="content-header">
-            <div class="page-header">
-                <div id="logo">
-                    <a href="#"><img alt="欢迎访问吴江招聘网" src="/static/images/logo.png"/></a>
-                </div>
-                <div class="banner">
-                    <li>
-                        <a target="_blank" href="{% url feedback %}">
-                            <img width="316" height="60" border="0" src="/static/images/temp/join.gif" alt="合作">
-                        </a>
-                    </li>
-                </div>
-                <div class="linedh">
-                    <li class="dh">客服热线1：{{ configuration.hot_line_one }}</li>
-                    <li class="dh">客服热线2：{{ configuration.hot_line_two }}</li>
-                    <li class="dh">QQ群：{{ configuration.qq }}</li>
-                </div>
+
+<script type="text/javascript">
+//$(".navigation li:first").css("background-image","none");
+var topMenuNum = 0;
+$("#nav_9ErWwx li span").hover(
+        function () {
+            topMenuNum++;
+            $(this).attr("id", "kindMenuHover" + topMenuNum);
+            $("#kindMenuHover" + topMenuNum + " > ul").show();
+            $(this).parent().addClass("hover");
+        },
+        function () {
+            $("#" + $(this).attr("id") + " > ul").hide();
+            $(this).attr("id", "");
+            $(this).parent().removeClass("hover");
+        }
+);
+</script>
+</div>
+ </div>
+ </div>
+<div class="web_bg">
+<div id="mainmain">
+    <div id="banner">
+	<div id="MODBLK_243" class="mod_block media_image mb_banner_block">
+
+<div class="flash_image">
+<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+        codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" width="970"
+        height="310">
+        <param name="movie" value="upload/flash/movie.swf"/>
+        <param name="quality" value="high"/>
+        <param name="wmode" value="transparent"/>
+        <embed src="upload/flash/movie.swf" width="970" height="310" quality="high"
+               pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash"
+               type="application/x-shockwave-flash" wmode="transparent"></embed>
+    </object>
+</div>
+
+</div>
+	</div>
+
+	<div id="main_con">
+    <div class="web_bg">
+            <div id="left">
+		<div id="MODBLK_246" class="mod_block mb_u6pugc7T_block">
+<h3 class="blk_t">关于我们</h3>
+<div class="list_con company_intro">
+<p>
+	&nbsp;<img src="/upload/image/20130408230431_76524.png" width="200" height="123" align="left" alt=""
+               style="padding-top:4px;padding-right:8px;"/>&nbsp; &nbsp; &nbsp;苏州坤裕纺织品有限公司是吴江市坤鸿喷织厂下属进出口子公司，是一个集化纤织造，染色，后整理于一体的综合性纺织品公司。公司本部坐落于江、浙、沪三省交界又地处太湖流域，南临京杭大运河，北靠318国道，水陆交通便利，有优越的地理位置。
+</p><p>
+	&nbsp; &nbsp; &nbsp;&nbsp;我司拥有一批优秀的工程技术人员和一支训练有素的职工队伍致力于工艺的开发研究并以“质量第一，信誉为上”企业宗旨，开拓进取不断创新，形成“高档产品技术领先，常规产品质优价廉”的经营特色，以此吸引众多外商。
+</p><p>
+	&nbsp; &nbsp; &nbsp;&nbsp;在坯布织造方面，公司拥有进口喷水、喷气800余台，倍捻机500台套，及进口的整、浆、并设备五……</p><div class="list_more"><a
+        href="index.php?_m=mod_static&_a=view&sc_id=2"><img src="template/fangzhi-110118-a11/images/more_37.jpg"
+                                                            width="32" height="9" border="0"/></a></div>
+</div><div class="list_bot"></div>
+</div>
+<div id="MODBLK_240" class="mod_block mb_l13F4sft_block">
+<h3 class="blk_t">产品展示</h3>
+
+		<div class="newprod">
+				<div class="newprod_top"></div>
+				<div class="newprod_con">
+
+<div class="pro_over">
+	<table class="media_grid" cellspacing="4" width="100%">
+		<tr>			<td>
+            <div class="newprod_list">
+				<div class="newprod_pic"><a href="index.php?_m=mod_product&_a=view&p_id=311"
+                                            title="黑色粗斜 (TWILL TAFFETA)"><img name="picautozoom" border="0"
+                                                                              alt="黑色粗斜 (TWILL TAFFETA)"
+                                                                              src="upload/image/heisecuxie TWILL TAFFETA(1)_lit.jpg"
+                                                                              class="prodthumb"/></a></div>
+                <div class="newprod_name"><a
+                        href="index.php?_m=mod_product&_a=view&p_id=311">黑色粗斜 (TWILL TAFFETA)</a></div>
+
+                    </div>
+                <div class="blankbar1"></div>
             </div>
-        </div>
-    </div>
-    <!-- 主体顶部信息结束 -->
 
-    <!-- 主体信息开始 -->
-    {% block content %}{% endblock %}
-    <!-- 主体信息结束 -->
+                    </td>
+                    <td>
+            <div class="newprod_list">
+				<div class="newprod_pic"><a href="index.php?_m=mod_product&_a=view&p_id=310"
+                                            title="阳离子人字斜提花 (TAFFETA JACQUARD)"><img name="picautozoom" border="0"
+                                                                                     alt="阳离子人字斜提花 (TAFFETA JACQUARD)"
+                                                                                     src="upload/image/yanglizirenzixietihua TAFFETA JACQUARD(1)_lit.jpg"
+                                                                                     class="prodthumb"/></a></div>
+                <div class="newprod_name"><a href="index.php?_m=mod_product&_a=view&p_id=310">阳离子人字斜提花 (TAFFETA JACQUARD)</a></div>
 
-    <!-- 尾部信息开始 -->
-    <div class="container" style="padding-top:7px;">
-        <div class="main_links" style="margin-bottom: 8px;">
+                    </div>
+                <div class="blankbar1"></div>
+            </div>
 
-            {% for item in foot_items %}
-                |
-                <a href="/system/foot_item/{{ item.id }}">{{ item.name }}</a>
-                |
-            {% endfor %}
-        </div>
-        <footer>
-            <p>吴江-招聘网(wj-zpw.com) 版权所有、严禁转载</p>
-            <p>吴江-招聘网(wj-zpw.com) 部分信息来源于网络，如若侵权，请联系客服，我们将尽快删除</p>
-            <p>
-                Copyright&copy; 吴江-招聘网 2011-2013&nbsp;&nbsp;<a href="http://www.miitbeian.gov.cn" target="_blank">苏ICP备13008443号</a>
-                <script type="text/javascript">
-					var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-                    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F7d9c6d7d8d916aab3e88a51dcd4fc652' type='text/javascript'%3E%3C/script%3E"));
-				</script>
-            </p>
-        </footer>
-    </div>
-    <!-- 尾部信息结束 -->
+            </td>
+            <td>
+            <div class="newprod_list">
+				<div class="newprod_pic"><a href="index.php?_m=mod_product&_a=view&p_id=309"
+                                            title="条子涤塔夫 (TAFFETA STRIP)"><img name="picautozoom" border="0"
+                                                                               alt="条子涤塔夫 (TAFFETA STRIP)"
+                                                                               src="upload/image/tiaoziditafu TAFFETA STRIP(1)_lit.jpg"
+                                                                               class="prodthumb"/></a></div>
+                <div class="newprod_name"><a href="index.php?_m=mod_product&_a=view&p_id=309">条子涤塔夫 (TAFFETA STRIP)</a></div>
 
-    <script type="text/javascript">
-        $(document).ready(function() {
-            right_height = $('.right_layer').height();
-            left_height = $('.left_layer').height();
-            if(right_height > left_height) {
-                $('.left_layer').height(right_height );
-            }
-        })
+                    </div>
+                <div class="blankbar1"></div>
+            </div>
 
-        $(".char_area").keyup(function() {
-            var txtValue = $(this).val();//获取文本域的值
-            var span = $(this).next().next().find('span');
-            if (span.text() == '') {
-                span = $(this).next().next().next().find('span');
-            }
-            span.html(txtValue.length);
-        });
-        $(".char_area").trigger("keyup");
-    </script>
-	<script src="/static/js/bootstrap.min.js" type="text/javascript"></script>
+    </td>
+    <td>
+            <div class="newprod_list">
+				<div class="newprod_pic"><a href="index.php?_m=mod_product&_a=view&p_id=308"
+                                            title="400T格子涤塔夫 (TAFFETA RIP-STOP)"><img name="picautozoom" border="0"
+                                                                                      alt="400T格子涤塔夫 (TAFFETA RIP-STOP)"
+                                                                                      src="upload/image/(10)_lit.jpg"
+                                                                                      class="prodthumb"/></a></div>
+                <div class="newprod_name"><a href="index.php?_m=mod_product&_a=view&p_id=308">400T格子涤塔夫 (TAFFETA RIP-STOP)</a></div>
 
+                    </div>
+                <div class="blankbar1"></div>
+            </div>
+
+                </td></tr>
+                <tr>			<td>
+            <div class="newprod_list">
+				<div class="newprod_pic"><a href="index.php?_m=mod_product&_a=view&p_id=307"
+                                            title="300T涤塔夫 (TAFFETA)"><img name="picautozoom" border="0"
+                                                                           alt="300T涤塔夫 (TAFFETA)"
+                                                                           src="upload/image/(9)_lit.jpg"
+                                                                           class="prodthumb"/></a></div>
+                <div class="newprod_name"><a
+                        href="index.php?_m=mod_product&_a=view&p_id=307">300T涤塔夫 (TAFFETA)</a></div>
+
+                    </div>
+                <div class="blankbar1"></div>
+            </div>
+
+        </td>
+        <td>
+            <div class="newprod_list">
+				<div class="newprod_pic"><a href="index.php?_m=mod_product&_a=view&p_id=306"
+                                            title="300T多F涤塔夫 (TEFFETA)"><img name="picautozoom" border="0"
+                                                                             alt="300T多F涤塔夫 (TEFFETA)"
+                                                                             src="upload/image/(8)_lit.jpg"
+                                                                             class="prodthumb"/></a></div>
+                <div class="newprod_name"><a
+                        href="index.php?_m=mod_product&_a=view&p_id=306">300T多F涤塔夫 (TEFFETA)</a></div>
+
+                    </div>
+                <div class="blankbar1"></div>
+            </div>
+
+        </td>
+        <td>
+            <div class="newprod_list">
+				<div class="newprod_pic"><a href="index.php?_m=mod_product&_a=view&p_id=305"
+                                            title="230T斜纹绸 (TWILL TAFFETA)"><img name="picautozoom" border="0"
+                                                                                 alt="230T斜纹绸 (TWILL TAFFETA)"
+                                                                                 src="upload/image/(4)_lit.jpg"
+                                                                                 class="prodthumb"/></a></div>
+                <div class="newprod_name"><a
+                        href="index.php?_m=mod_product&_a=view&p_id=305">230T斜纹绸 (TWILL TAFFETA)</a></div>
+
+                    </div>
+                <div class="blankbar1"></div>
+            </div>
+
+    </td>
+    <td>
+            <div class="newprod_list">
+				<div class="newprod_pic"><a href="index.php?_m=mod_product&_a=view&p_id=304"
+                                            title="210T涤塔夫迷彩印花 (TAFFETA PRINT)"><img name="picautozoom" border="0"
+                                                                                     alt="210T涤塔夫迷彩印花 (TAFFETA PRINT)"
+                                                                                     src="upload/image/(7)_lit.jpg"
+                                                                                     class="prodthumb"/></a></div>
+                <div class="newprod_name"><a href="index.php?_m=mod_product&_a=view&p_id=304">210T涤塔夫迷彩印花 (TAFFETA PRINT)</a></div>
+
+                    </div>
+                <div class="blankbar1"></div>
+            </div>
+
+    </td></tr>    </table>
+</div>
+			</div>
+				<div class="list_bot"></div>
+			</div>
+			<div class="blankbar"></div>
+
+
+    </div></div>
+    <div id="right">
+		<div id="MODBLK_1285" class="mod_block mb_D4Y53tqb_block">
+<h3 class="blk_t">产品列表</h3>
+
+
+<style type="text/css">
+@media screen, print {
+    ul.mktree  li {
+        list-style: none;
+    }
+
+    ul.mktree, ul.mktree ul, ul.mktree li {
+        margin-left: 7px;
+        padding: 0px;
+    }
+
+    ul.mktree  li           .bullet {
+        padding-left: 10px;
+    }
+
+    ul.mktree  li.liOpen    .bullet {
+        cursor: pointer;
+        background: url(template/fangzhi-110118-a11/images/minus.gif) center left no-repeat;
+    }
+
+    ul.mktree  li.liClosed  .bullet {
+        cursor: pointer;
+        background: url(template/fangzhi-110118-a11/images/plus.gif) center left no-repeat;
+    }
+
+    ul.mktree  li.liBullet  .bullet {
+        cursor: default;
+        background: url(bullet.gif) center left no-repeat;
+    }
+
+    ul.mktree  li.liOpen    ul {
+        display: block;
+    }
+
+    ul.mktree  li.liClosed  ul {
+        display: none;
+    }
+
+}
+</style>
+
+
+<div class="list_main category">
+	<div class="prod_type">
+	<div id="pro_type_GJvwII">
+		<ul class="mktree" id="tree1">
+			    <li>
+        <a href="index.php?_m=mod_product&_a=prdlist&cap_id=116">
+    涤塔夫</a>
+        </li>
+        <li>
+        <a href="index.php?_m=mod_product&_a=prdlist&cap_id=117">
+    春亚纺</a>
+        </li>
+        <li>
+        <a href="index.php?_m=mod_product&_a=prdlist&cap_id=118">
+    桃皮绒</a>
+        </li>
+        <li>
+        <a href="index.php?_m=mod_product&_a=prdlist&cap_id=119">
+    麂皮绒</a>
+        </li>
+        <li>
+        <a href="index.php?_m=mod_product&_a=prdlist&cap_id=120">
+    色丁</a>
+        </li>
+        <li>
+        <a href="index.php?_m=mod_product&_a=prdlist&cap_id=121">
+    雪纺类</a>
+        </li>
+        <li>
+        <a href="index.php?_m=mod_product&_a=prdlist&cap_id=122">
+    记忆面料</a>
+        </li>
+        <li>
+        <a href="index.php?_m=mod_product&_a=prdlist&cap_id=123">
+    尼丝纺</a>
+        </li>
+        <li>
+        <a href="index.php?_m=mod_product&_a=prdlist&cap_id=124">
+    塔丝隆</a>
+        </li>
+        <li>
+        <a href="index.php?_m=mod_product&_a=prdlist&cap_id=125">
+    牛津布</a>
+        </li>
+        <li>
+        <a href="index.php?_m=mod_product&_a=prdlist&cap_id=126">
+    家纺类</a>
+        </li>
+    			<div class="blankbar1"></div>
+		</ul>
+	</div>
+	</div>
+	<div class="list_bot"></div>
+</div>
+<div class="blankbar"></div>
+
+<script type="text/javascript" language="javascript">
+/**
+ * for menu-drop type
+ */
+var type = "click";
+if (type == 'click') {
+
+} else {
+    $("#pro_type_GJvwII > ul").droppy();
+    $("#pro_type_GJvwII ul ul li:last-child").css("border", "0px");
+}
+</script>
+
+
+</div>
+<div id="MODBLK_1251" class="mod_block mb_DmggJaFw_block">
+<h3 class="blk_t">联系方式</h3>
+<style type="text/css">
+.copyright .list_bot {
+    display: none;
+}
+</style>
+<div class="com_con"><p>
+	  手机：+8613912735570
+</p>
+<p>
+	  电话：+8651263750338
+</p>
+<p>
+	  邮箱：erik@kunyutex.com
+</p></div><div class="list_bot"></div>
+</div>
+		</div>
+
+
+        <div class="blankbar"></div>
+
+    </div></div></div>
+    <div id="footermain">
+
+<!-- 页脚【start】 -->
+<div id="footer" style="display:block;">
+<div style="margin-left:150px; padding:5px 10px;"></div>
+	<div class="copyright" style="display:block;">
+	<style type="text/css">
+		.mb_foot_block {
+            position: relative;
+        }
+
+        .mb_foot_block a {
+            display: inline;
+        }
+
+        .copyright .list_bot {
+            display: none;
+        }
+</style>
+	<div id="MODBLK_170" class="mod_block mb_foot_block">
+<style type="text/css">
+.copyright .list_bot {
+    display: none;
+}
+</style>
+<div class="com_con">Copyright © 2009-2011,www.kunyutex.com,All rights reserved<br/>
+版权所有 © 苏州坤裕纺织品有限公司 未经许可 严禁复制 建议使用1024X768分辨率浏览本站</div><div class="list_bot"></div>
+</div>
+<div id="MODBLK_1010" class="mod_block mb_foot_block">
+<h3 class="blk_t"></h3>
+<style type="text/css">
+.copyright .list_bot {
+    display: none;
+}
+</style>
+<div class="com_con_sq" id="com_con_sq">Power by <a href='http://www.sitestar.cn/' target='_blank'
+                                                    title='建站之星(sitestar)网站建设系统' style='display:inline;'>建站之星</a>|<a
+        href='http://www.cndns.com/' target='_blank' title='域名注册|域名申请|域名尽在“美橙互联”' style='display:inline;'>美橙互联</a>&nbsp;版权所有</div><div
+        class="list_bot"></div>
+</div>
+		<div class="com_con"><a target="_blank" href="http://www.miitbeian.gov.cn">苏ICP备13016639号</a><div
+                class="list_bot"></div></div>
+	</div>
+</div>
+<script type="text/javascript" language="javascript" src="/static/kunyutex/script/picAutoZoom.js"></script>
+<script type="text/javascript" language="javascript">
+<!--
+$.ajaxSetup({
+    timeout: 300000
+});
+//-->
+</script>
+<!-- 页脚【end】 -->
 </body>
-</html>
+</html></div>
