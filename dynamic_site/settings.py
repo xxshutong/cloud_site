@@ -93,6 +93,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_ROOT = BASE_DIR + "/dynamic_site/static"
+
 STATICFILES_DIRS = (
     BASE_DIR + "/dynamic_site/static",
 )
+
+# URL that handles the media served from MEDIA_ROOT. Make sure to use a
+# trailing slash.
+# Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
+MEDIA_URL = os.getenv('HOME_URL', 'http://localhost:8000/static/')
