@@ -186,39 +186,12 @@
 	                                    <div class="prod_type">
 	                                        <div id="pro_type_GJvwII">
 		                                        <ul class="mktree" id="tree1">
-			                                        <li>
-                                                        <a href="index.php?_m=mod_product&_a=prdlist&cap_id=116">涤塔夫</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index.php?_m=mod_product&_a=prdlist&cap_id=117">春亚纺</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index.php?_m=mod_product&_a=prdlist&cap_id=118">桃皮绒</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index.php?_m=mod_product&_a=prdlist&cap_id=119">麂皮绒</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index.php?_m=mod_product&_a=prdlist&cap_id=120">色丁</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index.php?_m=mod_product&_a=prdlist&cap_id=121">雪纺类</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index.php?_m=mod_product&_a=prdlist&cap_id=122">记忆面料</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index.php?_m=mod_product&_a=prdlist&cap_id=123">尼丝纺</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index.php?_m=mod_product&_a=prdlist&cap_id=124">塔丝隆</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index.php?_m=mod_product&_a=prdlist&cap_id=125">牛津布</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index.php?_m=mod_product&_a=prdlist&cap_id=126">家纺类</a>
-                                                    </li>
+                                                    {% for product_type in product_types %}
+                                                        <li>
+                                                            <a href="#">{{ product_type.name }}</a>
+                                                        </li>
+                                                    {% endfor %}
+
     			                                    <div class="blankbar1"></div>
 		                                        </ul>
 	                                        </div>
