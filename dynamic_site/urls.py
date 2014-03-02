@@ -1,4 +1,5 @@
 from django.conf.urls import patterns, include, url
+from dynamic_site import settings
 from dynamic_site.core.controllers import dashboard
 
 from django.contrib import admin
@@ -18,3 +19,4 @@ urlpatterns += patterns('',
 
                         url(r'^admin/', include(admin.site.urls)),
 )
+
