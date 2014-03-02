@@ -10,7 +10,8 @@ admin.autodiscover()
 urlpatterns = patterns('dynamic_site.core.controllers.dashboard',
                        # Home page.
                        url(r'^$', dashboard.home, name='home'),
-)
+                       url(r'^upload/flash/xml/focus_pics.xml$', dashboard.flash),
+                       )
 
 urlpatterns += patterns('',
                         # Examples:
